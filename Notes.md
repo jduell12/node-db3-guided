@@ -18,4 +18,20 @@
 
 ## Multi-table Queries Using Knex
 
--
+- Knex join and using alias'
+  - db("posts as p")
+    .join("users as u", "p.user_id", "u.id")
+    .select("p.contents as Quote", "u.username as Author")
+    .then((posts) => {
+    res.status(200).json({ data: posts });
+    });
+- Knex left join
+  - db("posts as p")
+    .leftJoin("users as u", "p.user_id", "u.id")
+    .select("p.contents as Quote", "u.username as Author")
+    .then((posts) => {
+    res.status(200).json({ data: posts });
+    });
+- Knex has first method to use on database
+  - returns first element of the returned array
+  - used for get by id method usually
