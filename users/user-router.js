@@ -48,7 +48,11 @@ router.put("/:id", (req, res) => {
 
   Users.editUser(id, changes)
     .then((user) => {
-      res.status(200).json({ update: user });
+      if (user) {
+        res.status(200).json({ update: user });
+      } else {
+        res.status(404).json({ message: "Could not find user with that id" });
+      }
     })
     .catch((err) => {
       res.status(500).json({ message: "Failed to update user" });
