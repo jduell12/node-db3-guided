@@ -32,12 +32,8 @@ function editUser(id, changes) {
   return db("users")
     .where({ id })
     .update(changes)
-    .then((count) => {
-      if (count) {
-        return getUserById(id);
-      } else {
-        return count;
-      }
+    .then((userId) => {
+      return getUserById(userId);
     });
 }
 
